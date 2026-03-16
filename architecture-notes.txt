@@ -1,0 +1,58 @@
+Architecture Notes & Design Decisions
+
+---
+
+### 1. Edge Case Handling
+
+● What happens if the API fails?
+The application uses try-catch blocks within the Context providers (Auth and Booking) to capture errors during data operations. In a real-world scenario, these blocks would trigger global error notifications (toasts/alerts) and potentially provide retry mechanisms, ensuring the UI remains stable instead of crashing.
+
+● How are loading states handled?
+Loading states are managed centrally using 'loading' boolean flags in our React Context. Components (like ProtectedRoute) monitor these flags to display elegant loading spinners or skeletons while data is being hydrated from localStorage or a remote API, ensuring a smooth user experience and preventing layout shifts.
+
+● How would you scale this UI for 1000+ rooms?
+To scale for a large number of rooms, we would implement:
+- Server-side pagination and search to fetch only the necessary data.
+- List virtualization (e.g., react-window) to render only the visible items in the viewport, significantly reducing DOM overhead.
+- Debounced filtering and server-side indexing for efficient room lookups.
+
+---
+
+### 2. Core Design Decisions
+
+● Why did you choose your state management approach?
+React Context API was chosen for its lightweight nature and native integration with React. It effectively solves the 'prop-drilling' problem for global data like Authentication and Bookings without the boilerplate complexity of Redux, making it ideal for a focused application of this scale.
+
+● Client vs Server Component Strategy
+Next.js App Router (Client/Server) separation was used to optimize performance. 
+- Layouts and Metadata are handled in Server Components for high SEO performance.
+- Complex interactive logic is isolated in discrete 'Client Components' (e.g., DashboardClient.jsx), keeping the bundle size optimized and the architecture modular.
+
+● Protected Routing Implementation
+Rather than scattering auth checks across every component, a centralized 'ProtectedRoute' wrapper component was implemented. This ensures a single source of truth for access control and simplifies maintenance when adding new private routes.
+
+● Data Persistence Strategy
+Using 'localStorage' as a mock database allows for persistent user sessions and booking history without the need for an external backend for this project. This demonstrates the ability to manage complex state transitions and data integrity (e.g., preventing duplicate bookings) solely on the frontend.
+
+● Modular Component Architecture
+UI components are strictly separated from business logic. This modularity ensures that the design system (theme, typography, styles) can be updated independently of the application's functional requirements, allowing for rapid iteration and high code reusability.
+
+---
+
+### 3. SEO, Crawling & AI Indexing Files
+
+To improve discoverability, indexing, and documentation clarity, a few additional web standard files were included in the project.
+
+● sitemap.xml  
+The sitemap.xml file provides a structured list of all important pages in the application. Search engines like Google use this file to efficiently crawl and index the website. This helps search engines understand the structure of the application and ensures important routes are discoverable.
+
+● robots.txt  
+The robots.txt file defines rules for search engine crawlers. It tells bots which parts of the website are allowed to be crawled and indexed. In this project, it also references the sitemap.xml to guide search engines toward the correct pages.
+
+● glossary.html  
+The glossary.html page documents key terms and concepts used throughout the application (such as booking flow, authentication logic, and dashboard features). This helps both users and developers quickly understand domain-specific terminology used within the platform.
+
+● llms.txt  
+The llms.txt file is designed for Large Language Models and AI crawlers. It provides structured information about the application so AI systems can better understand the project, its purpose, and its architecture. This improves AI discoverability and helps ensure accurate summarization of the project.
+
+These files demonstrate consideration for modern web standards, search engine optimization, and emerging AI indexing practices.
