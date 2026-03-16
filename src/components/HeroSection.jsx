@@ -72,7 +72,7 @@ export default function HeroSection() {
             {/* H1 — Poppins 600 | 72px | lh 1.25 | -2% tracking | #020E6A */}
             <h1
               className="
-                max-w-[1100px] w-full mb-12
+                max-w-[1300px] w-full mb-12
                 font-[Poppins] font-semibold
                 text-[clamp(36px,5.5vw,65px)] leading-[1.25] tracking-[-0.02em]
                 text-[#020E6A]
@@ -85,7 +85,7 @@ export default function HeroSection() {
             {/* Body — Poppins 400 | 18px | lh 28px | #020E6A */}
             <p
               className="
-                max-w-[480px] w-full mb-10
+                max-w-[590px] w-full mb-10
                 font-[Poppins] font-normal
                 text-[18px] leading-[28px]
                 text-[#020E6A] text-center

@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function StartSearch() {
   return (
-    <section className="w-full bg-white py-16 px-8 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-12">
+    <section className="w-full bg-white py-20 px-16 overflow-hidden">
+      <div className="max-w-[1888px] mx-auto flex items-center justify-between gap-12">
 
         {/* ── LEFT: Content ── */}
         <div className="flex flex-col items-start gap-5 max-w-[460px] w-full">

@@ -15,9 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Reserviq – Seamless Room Reservation Platform",
-  description:
-    "Book rooms effortlessly with Reserviq. A modern room booking dashboard featuring secure authentication, availability validation, and streamlined reservation management.",
+  title: "The Wealth Find",
 };
 
 
